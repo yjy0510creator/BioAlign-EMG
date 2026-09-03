@@ -1,0 +1,254 @@
+{
+  "package": "BioAlign_EMG_Complete_Reproducibility_Package_v1.0",
+  "version": "1.0.0",
+  "description": "Clean complete reproducibility package for BioAlign-EMG",
+  "data_bundled": false,
+  "checkpoints_bundled": false,
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 139,
+      "sha256": "0df4d35cac7bd7a5e66d2e6c56d434b3188791f412d5c94577863edbfd4de53c"
+    },
+    {
+      "path": "CODE_PROVENANCE.md",
+      "bytes": 1165,
+      "sha256": "7935cf26d5357116ddcbefcb593eb740c2627c4497bd9821a72aa7c1ecee7582"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1297,
+      "sha256": "198daf8b980b577409ec9447377be298a12e4983e108bc4ddaab77cf72fd59ba"
+    },
+    {
+      "path": "README_CN.md",
+      "bytes": 4433,
+      "sha256": "f554ce3783fecccae852d391850894071edde34bf841a9b2d1e56a57c8da785f"
+    },
+    {
+      "path": "bioalign_emg/__init__.py",
+      "bytes": 531,
+      "sha256": "8e8527b13628eff8d2019a33fcb33ea8217792df1256525a76e305f856266ab5"
+    },
+    {
+      "path": "bioalign_emg/angle.py",
+      "bytes": 8076,
+      "sha256": "338551d3180e899fd6346e375f36541fc5a4bef867f53789081cf2bcf39c4460"
+    },
+    {
+      "path": "bioalign_emg/augmentation.py",
+      "bytes": 1482,
+      "sha256": "fce81825f65ca983375ea786795ecfa3c53db75bcee356d723fa0ee21aedb903"
+    },
+    {
+      "path": "bioalign_emg/constants.py",
+      "bytes": 641,
+      "sha256": "ea1485dca1a39bbe7cdf04be562500ab06f5902f508fb680d1e6cf2acf2db581"
+    },
+    {
+      "path": "bioalign_emg/data.py",
+      "bytes": 11229,
+      "sha256": "45d3d0c5ea4abe2571dd62e6bb62ada4e8732a4183d9155e1622a0b88ee298c7"
+    },
+    {
+      "path": "bioalign_emg/deployment.py",
+      "bytes": 5138,
+      "sha256": "8b1cb200052f9d7f81237450d07bee7b7b319bb8705c722bc373af99006c6684"
+    },
+    {
+      "path": "bioalign_emg/experiment.py",
+      "bytes": 15770,
+      "sha256": "dec6f3a773e271e4be327dcd2bc7440cd5f3e7de88d9168ab8068326cc0a7823"
+    },
+    {
+      "path": "bioalign_emg/metrics.py",
+      "bytes": 2472,
+      "sha256": "02415d0b735322fbe0783f5251da096870328340098112399d4e2272dea08285"
+    },
+    {
+      "path": "bioalign_emg/models.py",
+      "bytes": 13629,
+      "sha256": "49fe45712e5134b56b972d83edce735fd4594c6d4fef73b7a8bcedbbee819e9f"
+    },
+    {
+      "path": "bioalign_emg/statistics.py",
+      "bytes": 3080,
+      "sha256": "416de68f2fa30fec6e36c020aead0a9af0342a98e52271836c286089321109ff"
+    },
+    {
+      "path": "bioalign_emg/training.py",
+      "bytes": 3918,
+      "sha256": "2929a63bdcdf1bcf0c2e5f6136df5fff18e663509805e736fcfdfa134a2cec42"
+    },
+    {
+      "path": "checkpoints/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/processed/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/raw/SeNic/subjects/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "deploy/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/EXPERIMENT_PROTOCOL.md",
+      "bytes": 2586,
+      "sha256": "c80dbd6941a0347f1d9c16ef004d8fcf097fd9a172219a33e25920b3112d79ea"
+    },
+    {
+      "path": "docs/MODEL_PARAMETER_NOTE.md",
+      "bytes": 1216,
+      "sha256": "ca0608c43b3c0540248c8a2e9d1481122faa195522779ce6b9d0bab262bfc1bb"
+    },
+    {
+      "path": "docs/OUTPUT_FILES.md",
+      "bytes": 801,
+      "sha256": "8929a069ec6283c88970a6e3a285f16693da32a48eb027c64817226f0012d16f"
+    },
+    {
+      "path": "docs/REPRODUCIBILITY_CHECKLIST.md",
+      "bytes": 938,
+      "sha256": "7921842a94d70353e9f595b51a6265cb981d926efd92440e3653fcc9b8ec0636"
+    },
+    {
+      "path": "figures/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 538,
+      "sha256": "ad3208d050f15780357bb9a834fa9d623ca10e49a0bd0f99869896882e52de21"
+    },
+    {
+      "path": "reference/paper_reported_alignment_ablation.csv",
+      "bytes": 191,
+      "sha256": "d51c2db4691e8666f12400704660ef2226bc436c0197900d41b7cb8183890b54"
+    },
+    {
+      "path": "reference/paper_reported_angle_naupc.csv",
+      "bytes": 110,
+      "sha256": "812e538aaa0ebe5d7d3319251483410f8fbd70ce4ba3a54384ea8dd24de89721"
+    },
+    {
+      "path": "reference/paper_reported_cpu_latency.csv",
+      "bytes": 266,
+      "sha256": "39087f007b26e5a5b35b154cc6544c567e7551cda7944c24c1599ce28d24b928"
+    },
+    {
+      "path": "reference/paper_reported_model_summary.csv",
+      "bytes": 345,
+      "sha256": "f26ad890840fcf0c156e9754d16eaa796357d3352b7afd686996a1f622272ef1"
+    },
+    {
+      "path": "reference/paper_reported_paired_stats.csv",
+      "bytes": 276,
+      "sha256": "e740a9647ee5774a5f4fcb7a946b1733001cd07676ab3f0c3272c22db0897499"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 140,
+      "sha256": "e4267be524a332b48315e27c6dc01dfaa0773ef03dfe1f8cc149c93547e4fe02"
+    },
+    {
+      "path": "results/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run_cpu_benchmark.bat",
+      "bytes": 275,
+      "sha256": "f9546b09c2a3a4801afc758f67b44947a3b15d3a05841241444cbaaaa4731dbb"
+    },
+    {
+      "path": "run_evidence_pack.bat",
+      "bytes": 273,
+      "sha256": "42495bd7828e40a29d145d2e53ced06573d89c0cf7167ea48e32e14c9e5de5d8"
+    },
+    {
+      "path": "run_main_experiment.bat",
+      "bytes": 279,
+      "sha256": "709c44f5c621e04cda1c2ec32116c4fdf92fbe714403f453df5287053f5c61de"
+    },
+    {
+      "path": "run_setup_windows.bat",
+      "bytes": 823,
+      "sha256": "2a3f94f17937513897ab11cc02739eed1bb1b0935b4b8b0b8981223248f652c3"
+    },
+    {
+      "path": "run_smoke_test.bat",
+      "bytes": 183,
+      "sha256": "c1fc7a81d0ec4fb0c1d8a4b4d1e73bf4a38eb1fbc4ac0c14113b563ccadb0d0e"
+    },
+    {
+      "path": "scripts/audit_dataset.py",
+      "bytes": 1072,
+      "sha256": "f4c0a71341ad51755945cbffb8266e323fb684d92b8770fd838214491d27b7f1"
+    },
+    {
+      "path": "scripts/benchmark_bioalign_final_cpu.py",
+      "bytes": 1494,
+      "sha256": "c74cfca8cc839fe147083b80257f9e4b35cb3277ca51514e90663d5c58eedacb"
+    },
+    {
+      "path": "scripts/download_senic.ps1",
+      "bytes": 5023,
+      "sha256": "4b1805c5bfdcf214f9b17675bee08b256b564afa4e9fc8e6037e27681becceee"
+    },
+    {
+      "path": "scripts/run_bioalign_final_evidence_pack.py",
+      "bytes": 2258,
+      "sha256": "343837d816cbfc0a8212e6c10be44884c7d6b3a4cff3d304b398800180430682"
+    },
+    {
+      "path": "scripts/run_mechanism_controls.py",
+      "bytes": 1679,
+      "sha256": "6479198b7327919bf761ccfdc43a69d3b868e222ae8bfa54e250473453118cc8"
+    },
+    {
+      "path": "scripts/run_physical_angle_analysis.py",
+      "bytes": 982,
+      "sha256": "dd9fb7742448d6cfbfb1bf9cf87fd93378b07c8b1df9da41ecbf2cae158729ab"
+    },
+    {
+      "path": "scripts/smoke_test.py",
+      "bytes": 2215,
+      "sha256": "62291fd1ad26db10ca7fc4b56e7f74144fa5e6b9f9f6c4e631bd197a3e9c373c"
+    },
+    {
+      "path": "scripts/train_bioalign_final_30subjects_3seeds.py",
+      "bytes": 2187,
+      "sha256": "a1882621fd04ff467aa0565ac8b42e0c724f4bf9856009e97f52212d4de3bc24"
+    },
+    {
+      "path": "scripts/train_bioselect_h10_v1.py",
+      "bytes": 1329,
+      "sha256": "304475e74eaace0a2d2c150ee2bd85190e74daced8dd59d1e02c7d7bcb33ec68"
+    },
+    {
+      "path": "tests/test_data_and_metrics.py",
+      "bytes": 983,
+      "sha256": "bd88b9466be3b7ac5ad8546571788d040bdaf60805d4758cee453cdf55907b95"
+    },
+    {
+      "path": "tests/test_models.py",
+      "bytes": 548,
+      "sha256": "8987695186b3159cdb1e6298e975b855ff9294de8edad6ffa3b3953fa9abfdef"
+    }
+  ]
+}

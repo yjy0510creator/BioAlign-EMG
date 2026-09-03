@@ -1,0 +1,6 @@
+model,nAUPC
+BioAlign_RingAug,0.3971
+TCN_RingAug,0.2347
+SE_RingAug,0.2301
+CBAM_RingAug,0.2243
+TCN_plain,0.2523

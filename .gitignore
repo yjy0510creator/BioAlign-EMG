@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+data/raw/
+data/processed/
+checkpoints/
+results/
+figures/
+logs/
+deploy/
+*.pt
+*.pth
+*.npz
+*.rar

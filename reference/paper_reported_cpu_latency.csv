@@ -1,0 +1,6 @@
+model,parameters,torchscript_mb,p50_ms,p95_ms,p99_ms
+TCN_plain,16663,0.072,0.833,1.291,1.659
+TCN_RingAug,16663,0.072,0.830,1.342,1.922
+SE_RingAug,17293,0.076,0.908,1.542,2.040
+CBAM_RingAug,17308,0.077,1.023,1.681,2.131
+BioAlign_RingAug,33549,0.133,1.397,2.194,2.710

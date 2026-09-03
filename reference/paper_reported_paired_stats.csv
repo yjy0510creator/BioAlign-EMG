@@ -1,0 +1,5 @@
+comparison,mean_paired_gain,bioalign_wins,wilcoxon_p,holm_adjusted_p
+BioAlign > TCN_RingAug,0.1521,29/30,1.86e-9,5.59e-9
+BioAlign > TCN_plain,0.1564,28/30,4.00e-8,4.00e-8
+BioAlign > SE_RingAug,0.1597,30/30,9.31e-10,3.73e-9
+BioAlign > CBAM_RingAug,0.1651,29/30,1.86e-9,5.59e-9

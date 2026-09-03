@@ -1,0 +1,6 @@
+model,ideal_macro_f1_mean,ideal_ci95_half_width,shift_macro_f1_mean,shift_ci95_half_width,degradation_mean
+BioAlign_RingAug,0.6957,0.0683,0.3876,0.0510,0.3081
+TCN_RingAug,0.4863,0.0590,0.2355,0.0398,0.2508
+TCN_plain,0.8788,0.0552,0.2312,0.0411,0.6476
+SE_RingAug,0.4606,0.0574,0.2279,0.0373,0.2327
+CBAM_RingAug,0.4590,0.0724,0.2225,0.0369,0.2365
