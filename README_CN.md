@@ -1,146 +1,96 @@
-# BioAlign-EMG 完整复现代码包 v1.0
+# BioAlign-EMG Mechanism Validation V2.1-clean
 
-本代码包覆盖论文所需的完整计算流程：SeNic 数据下载与审计、训练集专属归一化、RingAug、TCN/SE/CBAM 基线、BioAlign-EMG、30 名受试者 × 3 个随机种子的主实验、整套重训练消融、物理位移角度分析、统计检验、绘图、TorchScript 导出和 CPU 延迟测试。
+这是用于真实 SeNic 数据机制验证的干净代码版。它保留当前实验所需代码，删除旧版 `legacy_v1`、`__pycache__`、`.pytest_cache`、smoke 测试输出、checkpoint、预测文件和其他生成结果。
 
-## 先说明清楚
+## 现在要验证什么
 
-这不是用户电脑 `D:\\BioSelect_EMG` 整个目录的字节级备份，而是根据已经确认的项目脚本和论文冻结方案整理出的**干净、可运行、可公开发布的复现包**。数据集和训练权重没有打进压缩包：SeNic 是公开数据集，体积较大；权重需要在本地按论文方案重新训练。
+这版代码不再只证明“分类变好”，而是专门验证：
 
-## 论文冻结实验方案
+1. 真实电极角度校正是否有上限收益；
+2. 模型是否能恢复人工施加的旋转；
+3. 模型预测的旋转是否和 SeNic 实测角度有关；
+4. 对齐后同一手势跨位置是否更接近；
+5. soft probability weighting 是否破坏手势空间模式；
+6. BioAlign 是否优于 No Alignment、Uniform、Random、Hard-STE、传统模型和 Oracle / Wrong-direction 对照。
 
-- 数据：SeNic，h0-h29，共 30 名受试者，统一使用 session 0。
-- 通道：8；采样率：200 Hz；手势：7 类。
-- 训练：仅 p0 的 r0+r1，即每名受试者 14 个参考位置 trial。
-- 理想位置测试：p0-r2。
-- 电极移位测试：p1-p10 全部 trial。
-- 窗口：250 ms（50 点），步长 50 ms（10 点）。
-- 随机种子：42、2026、3407。
-- 主指标：所有移位位置合并后的 trial-level Macro-F1。
-- 最终模型损失：仅手势交叉熵；不使用物理角度监督、辅助 shift loss 或 consistency loss。
+## 目录关系
 
-## Windows 快速运行
-
-### 1. 解压后安装环境
-
-双击：
+真实数据仍放在旧项目：
 
 ```text
-run_setup_windows.bat
+D:\BioSelect_EMG\data\raw\SeNic\subjects
 ```
 
-推荐 Python 3.10 或 3.11。
-
-### 2. 下载并整理 SeNic
-
-在 PowerShell 中运行：
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\download_senic.ps1
-```
-
-完成后的目标结构为：
+本代码建议放在：
 
 ```text
-data/raw/SeNic/subjects/h0/...
-data/raw/SeNic/subjects/h1/...
-...
-data/raw/SeNic/subjects/h29/...
+D:\BioAlign_EMG_MechanismValidation_v2.1
 ```
 
-### 3. 审计数据
+## 安装依赖
 
-```powershell
-.\.venv\Scripts\python.exe .\scripts\audit_dataset.py
+```bat
+python -m pip install -r requirements_v2.txt
 ```
 
-每名受试者的 session 0 应有 231 个 CSV：11 个位置 × 7 类手势 × 3 次重复。
+## 数据审计
 
-### 4. 先做快速自检
+```bat
+python -m mechanism_validation.audit_senic_dataset --project-root D:\BioSelect_EMG --subjects h0-h29
+```
 
-双击：
+正常时每个受试者应为 231 个 session-0 trial、11 个位置、3 次重复、7 个手势、1 个角度文件，状态为 `OK`。
+
+## 先跑 h0 快速实验
+
+```bat
+run_h0_quick_v21.bat
+```
+
+主要输出：
 
 ```text
-run_smoke_test.bat
+D:\BioSelect_EMG\data\processed_v21\h0.npz
+D:\BioSelect_EMG\data\processed_v21\angle_audit.csv
+D:\BioSelect_EMG\results_v21\h0_quick_5epoch\metrics_all.csv
+D:\BioSelect_EMG\results_v21\h0_quick_5epoch\mechanism_continuous\mechanism_report.json
 ```
 
-该测试不需要数据，会检查模型前向传播、RingAug、指标函数和参数量。预期参数量：
+先看 `metrics_all.csv` 中的 `accuracy`、`balanced_accuracy`、`macro_f1`；再看 `mechanism_report.json` 中的 synthetic shift recovery、real angle agreement、latent disentanglement、pre/post pattern preservation。
 
-- TCN：16,663
-- SE-TCN：17,293
-- CBAM-TCN：17,308
-- 论文/原始 checkpoint 兼容版 BioAlign：33,549
-- 精简前向路径版 BioAlignCompact：31,299
+## 跑 30 人正式实验
 
-### 5. 运行论文主实验
+h0 快速实验确认逻辑正常后再运行：
 
-双击：
+```bat
+run_all_v21.bat
+```
+
+输出目录：
 
 ```text
-run_main_experiment.bat
+D:\BioSelect_EMG\results_v21\full_30subjects
 ```
 
-等价命令：
-
-```powershell
-.\.venv\Scripts\python.exe .\scripts\train_bioalign_final_30subjects_3seeds.py `
-  --subjects h0-h29 `
-  --seeds 42,2026,3407 `
-  --epochs 20 `
-  --batch-size 256
-```
-
-程序会保存 checkpoint，并在中断后根据已完成结果继续运行。
-
-### 6. 运行正式消融与角度证据包
-
-双击：
+关键汇总文件：
 
 ```text
-run_evidence_pack.bat
+all_subject_metrics_long.csv
+summary_shift_macro_f1.csv
+paired_shift_macro_f1.csv
+summary_ideal_macro_f1.csv
+paired_ideal_macro_f1.csv
 ```
 
-这会从头训练：
+## 结果解释底线
 
-- BioAlign full
-- BioAlign -Circular Alignment
+只有当下面几件事同时成立，论文才可以写“模型在补偿/修复电极旋转”：
 
-并对主实验结果执行 p0-p8 的物理位移 nAUPC 分析；随机移位 p9-p10 不进入单调旋转曲线。
+1. Continuous/Soft 在 shift 条件下明显优于 TCN、RingAug、No Alignment、Uniform、Random；
+2. Oracle continuous 或 Oracle integer 明显高于普通模型；
+3. Wrong-direction correction 明显变差；
+4. synthetic shift recovery 能恢复人工施加的旋转；
+5. predicted angle 和 real measured angle 有可解释关系；
+6. 对齐后同一手势跨位置更接近，同时不同手势没有被揉成一团。
 
-### 7. CPU 延迟测试与 TorchScript 导出
-
-主实验至少完成 h0、seed=2026 后，双击：
-
-```text
-run_cpu_benchmark.bat
-```
-
-## 目录
-
-```text
-bioalign_emg/       核心可复用 Python 包
-scripts/            主实验、消融、角度、benchmark 与下载入口
-reference/          论文中已报告的汇总数值，仅用于核对
-results/            运行后自动生成
-figures/            运行后自动生成
-checkpoints/        运行后自动生成
-logs/               进度日志
-```
-
-## 重要的参数量兼容说明
-
-原始最终模型类继承自探索期 `BioSelectEMG`，覆盖了 `forward()`，但两个不参与最终前向计算的 gate 子模块仍然被 PyTorch 注册，因此 `sum(p.numel())` 为 33,549。这个包保留 `BioAlignEMG` 作为**原 checkpoint 兼容实现**，确保状态字典和论文已报告参数量一致；同时提供删除无效 gate 的 `BioAlignEMGCompact`，其实际前向路径参数量为 31,299。
-
-在没有重新跑完全部 30×3 实验前，不应把 Compact 版本的结果当成论文结果。详见 `docs/MODEL_PARAMETER_NOTE.md`。
-
-## 已做的本地质量检查
-
-压缩包生成时已执行：
-
-- Python 全文件编译检查；
-- 模型参数量与输出维度检查；
-- RingAug 形状检查；
-- 一次合成数据反向传播；
-- ZIP 完整性检查；
-- SHA-256 清单生成。
-
-完整 30 名受试者训练无法在本次打包环境中重跑，因为公开数据集和原 checkpoint 不在当前运行容器中。
+如果只有分类提高，但角度恢复和模式分析不成立，论文表述必须降级为“样本自适应循环特征混合”，不能声称强旋转修复或强仿生重映射。

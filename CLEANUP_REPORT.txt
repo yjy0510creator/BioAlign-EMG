@@ -1,0 +1,17 @@
+BioAlign-EMG Mechanism Validation V2.1-clean
+
+Clean-up completed:
+- Removed legacy_v1 dependency by adding mechanism_validation/senic_loader.py.
+- Updated build_senic_npz.py to read SeNic directly through senic_loader.py.
+- Added mechanism_validation/audit_senic_dataset.py as a clean dataset audit entrypoint.
+- Removed dead helper modules: legacy_cache_adapter.py, raw_manifest.py, archive_utils.py.
+- Removed generated artifacts: __pycache__, .pytest_cache, smoke_v21, checkpoints, prediction NPZs, local smoke outputs, old generated logs.
+- Kept only source code, tests, configs, run scripts, requirements, README, claims/changelog docs.
+
+Verification in clean package:
+- Python compileall: passed.
+- pytest tests_v2: 10/10 passed.
+- synthetic_validation smoke command: executed successfully with 1 epoch.
+
+Note:
+- The package is code-clean, but final scientific results still require real SeNic h0-h29 experiments.
