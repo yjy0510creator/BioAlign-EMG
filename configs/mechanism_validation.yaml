@@ -1,0 +1,47 @@
+protocol:
+  train_positions: [p0]
+  train_repetitions: [r0, r1]
+  ideal_test: {positions: [p0], repetitions: [r2]}
+  shift_test: {positions: [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]}
+  inference_unit: trial
+models:
+  - TD-LDA
+  - TD-SVM-RBF
+  - TCN
+  - CircularConvTCN
+  - NoAlignment
+  - UniformMixture
+  - UniformSafeResidual
+  - RandomMixture
+  - HardSTE
+  - SoftDiscrete
+  - ContinuousFourier
+  - XCorrHardCorrection
+  - OracleInteger
+  - OracleContinuous
+  - WrongDirection
+training:
+  seeds: [42, 2026, 3407]
+  epochs: 30
+  batch_size: 256
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  synthetic_shift_supervision: true
+  synthetic_shift_type: continuous
+  lambda_shift: 0.5
+  lambda_consistency: 0.2
+statistics:
+  primary_endpoint: all_shift_trial_macro_f1
+  tests: two_sided_paired_wilcoxon
+  multiplicity: holm
+  confidence_intervals: participant_bootstrap_95
+mechanism_endpoints:
+  - synthetic_integer_shift_accuracy
+  - synthetic_continuous_circular_mae_deg
+  - real_angle_circular_mae_deg
+  - real_angle_circular_correlation
+  - within_position_cross_gesture_shift_consistency
+  - pre_post_within_gesture_cross_position_similarity
+  - gesture_separability_pre_post
+  - position_leakage_pre_post
+  - probability_entropy_performance_relation
